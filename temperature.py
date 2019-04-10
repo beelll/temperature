@@ -58,7 +58,7 @@ def loop():
             print(temperature + ' ' + humidity)
             time.sleep(60)
 
-         time.sleep(1)
+        time.sleep(1)
 
 
 
