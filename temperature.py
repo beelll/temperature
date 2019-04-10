@@ -42,7 +42,7 @@ def getHumidity():
 
 
 def loop():
-    while True
+    while True:
         now = datetime.datetime.now()
         if ((now.minute % 5)  == 0):     # every 20 minutes
             getTempBySocket()
@@ -55,6 +55,7 @@ def loop():
             data = '{"value1":"' + now + '","value2":"' + temperature + '","value3":"' + humidity + '"}'
             response = requests.post('https://maker.ifttt.com/trigger/temperature/with/key/dZoUaA3eWWF2H0HmNNfDtb', headers=headers, data=data)
 
+            print(temperature + ' ' + humidity)
             time.sleep(60)
 
          time.sleep(1)
