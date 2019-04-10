@@ -52,10 +52,11 @@ def loop():
                 'Content-Type': 'application/json',
             }
             #data = '{"value1":"2018/01/06 0:03:03","value2":"24","value3":"33"}'
-            data = '{"value1":"' + now + '","value2":"' + temperature + '","value3":"' + humidity + '"}'
+            data = '{"value1":"' + str(now) + '","value2":"' + str(temperature) + '","value3":"' + str(humidity) + '"}'
             response = requests.post('https://maker.ifttt.com/trigger/temperature/with/key/dZoUaA3eWWF2H0HmNNfDtb', headers=headers, data=data)
 
-            print(temperature + ' ' + humidity)
+            #print(temperature + ' ' + humidity)
+            print(data)
             time.sleep(60)
 
         time.sleep(1)
