@@ -6,7 +6,7 @@ import sys
 TCP_HOST_ADDR = '192.168.0.18'
 TCP_HOST_PORT = 5000
 
-# RaspberryPi子機とソケット通信をする。
+# Run TCP-IP Socket transfer
 def recSocketvData(command):
     s = socket.socket()
 
@@ -18,7 +18,7 @@ def recSocketvData(command):
     return ret
 
 
-# 温度センサーデータをソケット経由で取得する
+# Receive temprature data by TCP-IP Socket
 def getTemp():
     data = recSocketvData("getTemperature")
     print(data)
