@@ -6,6 +6,9 @@ import sys
 TCP_HOST_ADDR = '192.168.0.18'
 TCP_HOST_PORT = 5000
 
+temperature = 0
+humidity = 0
+
 # Run TCP-IP Socket transfer
 def recSocketvData(command):
     s = socket.socket()
@@ -21,7 +24,9 @@ def recSocketvData(command):
 # Receive temprature data by TCP-IP Socket
 def getTemp():
     data = recSocketvData("getTemperature")
-    print(data)
+    temperature = data.split(',')[0]
+    humidity = data.split(',')[1]
+    print(temperature + humidity)
 
 
 # Call getTemperature() only when it is executed directry
