@@ -44,7 +44,7 @@ def getHumidity():
 def loop():
     while True:
         now = datetime.datetime.now()
-        if ((now.minute % 20)  == 0):     # every 20 minutes
+        if ((now.minute % 2)  == 0):     # every 20 minutes
             getTempBySocket()
 
             # Send data to IFTTT
