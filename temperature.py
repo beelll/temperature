@@ -27,8 +27,10 @@ def recSocketvData(command):
 # Receive temprature data by TCP-IP Socket
 def getTempBySocket():
     data = recSocketvData("getTemperature")
-# set global
+    # set global
+    global temperature 
     temperature = data.split(',')[0]
+    global humidity 
     humidity = data.split(',')[1]
     #print(temperature + ' ' + humidity)
     return data
@@ -44,7 +46,7 @@ def getHumidity():
 def loop():
     while True:
         now = datetime.datetime.now()
-        if ((now.minute % 2)  == 0):     # every 20 minutes
+        if ((now.minute % 20)  == 0):     # every 20 minutes
             getTempBySocket()
 
             # Send data to IFTTT
@@ -56,7 +58,7 @@ def loop():
             response = requests.post('https://maker.ifttt.com/trigger/temperature/with/key/dZoUaA3eWWF2H0HmNNfDtb', headers=headers, data=data)
 
             #print(temperature + ' ' + humidity)
-            print(data)
+            #print(data)
             time.sleep(60)
 
         time.sleep(1)
