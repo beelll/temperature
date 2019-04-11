@@ -28,9 +28,9 @@ def recSocketvData(command):
 def getTempBySocket():
     data = recSocketvData("getTemperature")
     # set global
-    global temperature 
+    global temperature
     temperature = data.split(',')[0]
-    global humidity 
+    global humidity
     humidity = data.split(',')[1]
     #print(temperature + ' ' + humidity)
     return data
@@ -44,6 +44,9 @@ def getHumidity():
 
 
 def loop():
+    # get temperature at first
+    getTempBySocket()
+
     while True:
         now = datetime.datetime.now()
         if ((now.minute % 20)  == 0):     # every 20 minutes
