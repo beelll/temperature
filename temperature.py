@@ -49,7 +49,7 @@ def loop():
 
     while True:
         now = datetime.datetime.now()
-        if ((now.minute % 20)  == 0):     # every 20 minutes
+        if ((now.minute % 2)  == 0):     # every 20 minutes
             getTempBySocket()
 
             # Send data to IFTTT
@@ -60,7 +60,7 @@ def loop():
             data = '{"value1":"' + str(now) + '","value2":"' + str(temperature) + '","value3":"' + str(humidity) + '"}'
             response = requests.post('https://maker.ifttt.com/trigger/temperature/with/key/dZoUaA3eWWF2H0HmNNfDtb', headers=headers, data=data)
 
-            #print(temperature + ' ' + humidity)
+            print(temperature + ' ' + humidity)
             #print(data)
             time.sleep(60)
 
