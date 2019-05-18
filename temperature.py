@@ -4,6 +4,7 @@ import sys
 import time
 import datetime
 import requests
+import threading
 
 
 TCP_HOST_ADDR = '192.168.0.18'
@@ -21,12 +22,12 @@ def recSocketvData(command):
     s.send(command)
     #while True:
     ret = s.recv(4096)
-    return ret
+    return ret.decode('utf-8')
 
 
 # Receive temprature data by TCP-IP Socket
 def getTempBySocket():
-    data = recSocketvData("getTemperature")
+    data = recSocketvData(b'getTemperature')
     # set global
     global temperature
     temperature = data.split(',')[0]
@@ -49,7 +50,7 @@ def loop():
 
     while True:
         now = datetime.datetime.now()
-        if ((now.minute % 20)  == 0):     # every 20 minutes
+        if ((now.minute % 30)  == 0):     # every 30 minutes
             getTempBySocket()
 
             # Send data to IFTTT
@@ -65,6 +66,11 @@ def loop():
             time.sleep(60)
 
         time.sleep(1)
+
+
+def startGetTempThread():
+    th = threading.Thread(target=loop)
+    th.start()
 
 
 # Call getTemperature() only when it is executed directry
