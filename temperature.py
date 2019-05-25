@@ -4,7 +4,7 @@ import sys
 import time
 import datetime
 import requests
-import threading
+#import threading
 
 
 TCP_HOST_ADDR = '192.168.0.18'
@@ -39,6 +39,7 @@ def getTempBySocket():
 
 # Upload temperature data to IFTTT
 def uploadIFTTT():
+    now = datetime.datetime.now()
     getTempBySocket()
     headers = {
         'Content-Type': 'application/json',
